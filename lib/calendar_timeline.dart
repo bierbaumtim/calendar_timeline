@@ -84,9 +84,12 @@ class _CalendarTimelineState extends State<CalendarTimeline> {
     super.initState();
     _initCalendar();
     _scrollAlignment = widget.leftMargin / 440;
-    SchedulerBinding.instance.addPostFrameCallback((_) {
-      initializeDateFormatting(_locale);
-    });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    initializeDateFormatting(_locale);
   }
 
 
