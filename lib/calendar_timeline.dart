@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
+
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -238,7 +238,7 @@ class _CalendarTimelineState extends State<CalendarTimeline> {
   _resetCalendar(DateTime date) {
     _generateDays(date);
     _daySelectedIndex = date.month == _selectedDate.month
-      ? _days.indexOf(_days.firstWhere((dayDate) => dayDate.day == _selectedDate.day))
+      ? _days.indexWhere((dayDate) => dayDate.day == _selectedDate.day)
       : null;
     _controllerDay.scrollTo(
       index: _daySelectedIndex ?? 0,
@@ -285,11 +285,10 @@ class _CalendarTimelineState extends State<CalendarTimeline> {
     _selectedDate = widget.initialDate;
     _generateMonths();
     _generateDays(_selectedDate);
-    _monthSelectedIndex = _months.indexOf(_months.firstWhere((monthDate) =>
+    _monthSelectedIndex = _months.indexWhere((monthDate) =>
         monthDate.year == widget.initialDate.year &&
-        monthDate.month == widget.initialDate.month));
-    _daySelectedIndex = _days.indexOf(
-        _days.firstWhere((dayDate) => dayDate.day == widget.initialDate.day));
+        monthDate.month == widget.initialDate.month);
+    _daySelectedIndex = _days.indexWhere((dayDate) => dayDate.day == widget.initialDate.day);
   }
 }
 
