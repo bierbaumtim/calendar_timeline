@@ -240,12 +240,7 @@ class _CalendarTimelineState extends State<CalendarTimeline> {
     _daySelectedIndex = date.month == _selectedDate.month
       ? _days.indexWhere((dayDate) => dayDate.day == _selectedDate.day)
       : null;
-    _controllerDay.scrollTo(
-      index: _daySelectedIndex ?? 0,
-      alignment: _scrollAlignment,
-      duration: Duration(milliseconds: 500),
-      curve: Curves.easeIn,
-    );
+    _moveToDayIndex(_daySelectedIndex ?? 0);
   }
 
   _goToActualMonth(int index) {
